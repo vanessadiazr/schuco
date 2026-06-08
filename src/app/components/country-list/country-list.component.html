@@ -5,11 +5,12 @@
   Error loading data
 </div>
 
-<table *ngIf="!loading && !error">
-  <thead>
-    <tr>
-      <th *ngFor="let col of columns" (click)="sortData(col.key)">
-        {{ col.label }}
+<div class="table-container" *ngIf="!loading && !error">
+  <table>
+    <thead>
+      <tr>
+        <th *ngFor="let col of columns" (click)="sortData(col.key)">
+          {{ col.label }}
         <span *ngIf="sortColumn === col.key">
           {{ sortDirection === 'asc' ? '↑' : '↓' }}
         </span>
@@ -28,3 +29,4 @@
     </tr>
   </tbody>
 </table>
+</div>
