@@ -3,10 +3,63 @@ div.table-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 5vh;
+
+  .table-scroll-container {
+    width: 100%;
+    max-height: 85vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-x pan-y pinch-zoom;
+    -webkit-user-select: none;
+    user-select: none;
+    
+    
+    &::after {
+      content: "";
+      position: sticky;
+      bottom: 0;
+      display: block;
+      height: 20px;
+
+      pointer-events: none;
+
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 1)
+      );
+    }
+
+    
+    scrollbar-width: thin; // Firefox
+    scrollbar-color: rgba(0,0,0,0.2) transparent;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(0, 0, 0, 0.35);
+    }
+
+  }
 
   table {
-    width: 70rem;
+   
+    width: 100%;
+    min-width: 600px;
     border-collapse: collapse;
     background-color: white;
 
@@ -20,6 +73,10 @@ div.table-container {
       background-color: #dedede;
       cursor: pointer;
       text-align: left;
+
+      position: sticky;
+      top: 0;
+      z-index: 1;
 
       &:hover {
         background-color: #eaeaea;
@@ -35,5 +92,11 @@ div.table-container {
         background-color: #f1f1f1;
       }
     }
+  }
+}
+
+@media (min-width: 900px) {
+  div.table-container .table-scroll-container {
+    width: 70%;
   }
 }
