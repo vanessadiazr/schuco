@@ -7,7 +7,7 @@ import { Country } from '../models/country.model';
 describe('CountryService', () => {
   let service: CountryService;
   let httpTestingController: HttpTestingController;
-  const apiUrl = 'https://restcountries.com/v3.1/all?fields=name,capital,currencies,population,area';
+  const apiUrl = 'http://localhost:3000/api/countries';
 
   const mockCountries: Country[] = [
     {
@@ -15,7 +15,7 @@ describe('CountryService', () => {
       capital: ['Test City'],
       population: 123,
       area: 45,
-      currencies: { TST: { name: 'Test Dollar', symbol: 'T$' } }
+      currencies: [{ code: 'TST', name: 'Test Dollar', symbol: 'T$' }]
     }
   ];
 

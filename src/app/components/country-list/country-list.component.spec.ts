@@ -15,7 +15,7 @@ describe('CountryListComponent', () => {
       capital: ['Brasília'],
       population: 200,
       area: 100,
-      currencies: { BRL: { name: 'Real', symbol: 'R$' } }
+      currencies: [{ code: 'BRL', name: 'Real', symbol: 'R$' }]
     },
     {
       name: { official: 'Chile' },
@@ -27,7 +27,7 @@ describe('CountryListComponent', () => {
       capital: ['Buenos Aires'],
       population: 100,
       area: 50,
-      currencies: { ARS: { name: 'Peso', symbol: '$' } }
+      currencies: [{ code: 'ARS', name: 'Peso', symbol: '$' }]
     }
   ];
 
@@ -42,7 +42,7 @@ describe('CountryListComponent', () => {
 
     fixture.detectChanges();
 
-    const req = httpTestingController.expectOne('https://restcountries.com/v3.1/all?fields=name,capital,currencies,population,area');
+    const req = httpTestingController.expectOne('http://localhost:3000/api/countries');
     expect(req.request.method).toBe('GET');
     req.flush([...mockCountries]);
 
