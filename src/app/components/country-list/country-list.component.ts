@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CountryService } from '../../services/country.service';
@@ -29,7 +28,6 @@ export class CountryListComponent implements OnInit {
     { key: 'density', label: 'Population density (inhabitants/km2)' }
   ];
 
-
   constructor(private countryService: CountryService) {}
 
   ngOnInit(): void {
@@ -47,18 +45,18 @@ export class CountryListComponent implements OnInit {
 
   // Currency formatting
   getCurrency(country: Country): string {
-    if (!country.currencies) return 'N/A';
+    if (!country.currencies || country.currencies.length === 0) {
+      return 'N/A';
+    }
 
-    const key = Object.keys(country.currencies)[0];
-    if (!key) return 'N/A';
+    const currency = country.currencies[0];
 
-    const currency = country.currencies[key];
-    return currency?.name
+    return currency.name
       ? `${currency.name}${currency.symbol ? ` (${currency.symbol})` : ''}`
       : 'N/A';
   }
 
-  // Density calculation
+  // Population density calculation
   getDensity(country: Country): number {
     return country.area ? country.population / country.area : 0;
   }
@@ -84,7 +82,7 @@ export class CountryListComponent implements OnInit {
       if (isEmpty(valueA)) return this.sortDirection === 'asc' ? 1 : -1;
       if (isEmpty(valueB)) return this.sortDirection === 'asc' ? -1 : 1;
 
-      // strings (localeCompare)
+      // strings
       if (typeof valueA === 'string' && typeof valueB === 'string') {
         return this.sortDirection === 'asc'
           ? valueA.localeCompare(valueB, 'en', { sensitivity: 'base' })
@@ -102,7 +100,7 @@ export class CountryListComponent implements OnInit {
     });
   }
 
-
+  // Value extractor
   private getValue(country: Country, column: string): any {
     switch (column) {
       case 'name':

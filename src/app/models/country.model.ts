@@ -1,4 +1,3 @@
-
 export interface Country {
   name: {
     official: string;
@@ -6,5 +5,9 @@ export interface Country {
   capital?: string[];
   population: number;
   area: number;
-  currencies?: any;
+  currencies?: {
+    code: string;
+    name: string;
+    symbol?: string;
+  }[];
 }

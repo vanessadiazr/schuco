@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Country } from '../models/country.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
 
-  private apiUrl = 'https://restcountries.com/v3.1/all?fields=name,capital,currencies,population,area';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
