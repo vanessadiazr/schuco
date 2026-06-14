@@ -47,6 +47,36 @@ The backend:
 
 ---
 
+## Technical Decisions
+
+- **Backend proxy**
+  - Introduced due to API v5 requiring authentication
+  - Prevents exposing the API key in the frontend
+  - Centralizes API communication and future changes
+
+- **Separation of concerns**
+  - Frontend handles UI and data presentation
+  - Backend handles API communication and transformation
+
+- **Data normalization**
+  - Simplified API response to ensure consistent structure
+  - Improved handling of missing or optional fields
+
+- **Sorting strategy**
+  - Implemented using `localeCompare` for proper internationalization support
+  - Ensured "N/A" values are always positioned at the end
+
+- **Error handling**
+  - Graceful fallback for missing data
+  - User-friendly error display in UI
+
+- **Deployment strategy**
+  - Frontend deployed via GitHub Pages
+  - Backend deployed via Render
+  - Chosen for simplicity and fast setup
+
+---
+
 ## Data Loading
 
 Currently, the application retrieves only the first 25 countries.
@@ -74,6 +104,7 @@ Currently, the application retrieves only the first 25 countries.
 - GitHub Pages (frontend hosting)
 
 ---
+
 
 ## Deployment
 
